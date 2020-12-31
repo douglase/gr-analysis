@@ -472,7 +472,7 @@ bool check_locked_sensor(std::vector<std::string> sensor_names, const char* sens
 
 	while (true){
 		if ((not first_lock_time.is_not_a_date_time()) and
-				(boost::get_system_time() > (first_lock_time + boost::posix_time::seconds(setup_time))))
+				(boost::get_system_time() > (first_lock_time + boost::posix_time::seconds(static_cast<long>(setup_time)))))
 		{
 			std::cout << " locked." << std::endl;
 			break;
