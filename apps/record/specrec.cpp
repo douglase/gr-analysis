@@ -624,7 +624,7 @@ int UHD_SAFE_MAIN(int argc, char *argv[]){
 	//set the antenna
 	if (vm.count("ant")) usrp->set_rx_antenna(ant);
 
-	boost::this_thread::sleep(boost::posix_time::seconds(setup_time)); //allow for some setup time
+	boost::this_thread::sleep(boost::posix_time::seconds(static_cast<long>(setup_time))); //allow for some setup time
 
 	//check Ref and LO Lock detect
 	if (not vm.count("skip-lo")){
