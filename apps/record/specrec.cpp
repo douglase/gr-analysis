@@ -656,13 +656,13 @@ int UHD_SAFE_MAIN(int argc, char *argv[]){
 
 			//uhd::time_spec_t pc_time = time(0);
 			usrp->set_time_now(pc_time);
-			std::cout << "Set USRP time with PC system time: "<< ctime(&pc_time) <<std::endl;
+			std::cout << "Set USRP time with PC system time: ";//<< ctime(&pc_time) <<std::endl;
 		}
 	} else {
 		//uhd::time_spec_t timestamp = uhd::time_spec_t::get_system_time();
-		time_t pc_time = time(0);
+		uhd::time_spec_t pc_time = uhd::time_spec_t(time(0),0);
 		usrp->set_time_now(pc_time);
-		std::cout << "Set USRP time with PC system time: "<< ctime(&pc_time) <<std::endl;
+		std::cout << "Set USRP time with PC system time: ";//<< ctime(&pc_time) <<std::endl;
 	}
 
 	if (total_num_samps == 0){
