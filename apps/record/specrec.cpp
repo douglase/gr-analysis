@@ -652,7 +652,9 @@ int UHD_SAFE_MAIN(int argc, char *argv[]){
 			std::cout << "Set USRP with GPS time: "<< ctime(&stdtime) <<std::endl;
 		}else{
 			std::cout << "Found GPSDO but no GPS lock, setting usrp time to system time" << std::endl;
-			uhd::time_spec_t pc_time = time(0);
+			uhd::time_spec_t pc_time = uhd::time_spec_t(time(0),0);
+
+			//uhd::time_spec_t pc_time = time(0);
 			usrp->set_time_now(pc_time);
 			std::cout << "Set USRP time with PC system time: "<< ctime(&pc_time) <<std::endl;
 		}
