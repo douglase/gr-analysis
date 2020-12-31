@@ -653,12 +653,12 @@ int UHD_SAFE_MAIN(int argc, char *argv[]){
 		}else{
 			std::cout << "Found GPSDO but no GPS lock, setting usrp time to system time" << std::endl;
 			//time_spec_t pc_time = time(0);
-			uhd::time_spec_t pc_time = uhd::time_spec_t::get_system_time()
+			uhd::time_spec_t pc_time = uhd::get_system_time()
 			usrp->set_time_now(pc_time);
 			std::cout << "Set USRP time with PC system time: "<< ctime(&pc_time) <<std::endl;
 		}
 	} else {
-		uhd::time_spec_t timestamp = uhd::time_spec_t::get_system_time();
+		uhd::time_spec_t pc_time = uhd::get_system_time();
 		//time_t pc_time = time(0);
 		usrp->set_time_now(pc_time);
 		std::cout << "Set USRP time with PC system time: "<< ctime(&pc_time) <<std::endl;
