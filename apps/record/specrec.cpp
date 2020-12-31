@@ -17,7 +17,6 @@
 
 #include <uhd/types/tune_request.hpp>
 #include <uhd/types/time_spec.hpp>
-#include <uhdlib/utils/system_time.hpp>
 #include <uhd/utils/thread.hpp>
 #include <uhd/utils/safe_main.hpp>
 #include <uhd/usrp/multi_usrp.hpp>
@@ -653,14 +652,13 @@ int UHD_SAFE_MAIN(int argc, char *argv[]){
 			std::cout << "Set USRP with GPS time: "<< ctime(&stdtime) <<std::endl;
 		}else{
 			std::cout << "Found GPSDO but no GPS lock, setting usrp time to system time" << std::endl;
-			//time_spec_t pc_time = time(0);
-			uhd::time_spec_t pc_time = uhd::get_system_time()
+			uhd::time_spec_t pc_time = time(0);
 			usrp->set_time_now(pc_time);
 			std::cout << "Set USRP time with PC system time: "<< ctime(&pc_time) <<std::endl;
 		}
 	} else {
-		uhd::time_spec_t pc_time = uhd::get_system_time();
-		//time_t pc_time = time(0);
+		//uhd::time_spec_t timestamp = uhd::time_spec_t::get_system_time();
+		time_t pc_time = time(0);
 		usrp->set_time_now(pc_time);
 		std::cout << "Set USRP time with PC system time: "<< ctime(&pc_time) <<std::endl;
 	}
